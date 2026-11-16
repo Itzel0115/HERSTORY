@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "exhibitions": [
+    {
+      "id": "nushu",
+      "status": "draft",
+      "primaryCategory": "her-words",
+      "tags": [],
+      "locales": {
+        "zh-Hant": {
+          "title": "NÜSHU 女書 — 女性書寫的世界",
+          "summary": "從文字材料出發，探索女書的書寫與文化脈絡。",
+          "path": "exhibitions/nushu/index.html"
+        },
+        "en": {
+          "title": "NÜSHU — A World Written by Women",
+          "summary": "An exhibition in preparation, exploring Nüshu writing and its cultural contexts.",
+          "path": "en/exhibitions/nushu/index.html"
+        }
+      },
+      "displayOrder": 1,
+      "featured": false,
+      "relatedIds": [],
+      "researchPath": "docs/research/nushu/",
+      "updatedAt": "2026-11-16"
+    },
+    {
+      "id": "a-room-of-ones-own",
+      "status": "draft",
+      "primaryCategory": "her-world",
+      "tags": [
+        "her-words"
+      ],
+      "locales": {
+        "zh-Hant": {
+          "title": "A Room of One’s Own — 創作的條件",
+          "summary": "從 Virginia Woolf 的作品出發，研究空間、教育與經濟資源。",
+          "path": "exhibitions/a-room-of-ones-own/index.html"
+        },
+        "en": {
+          "title": "A Room of One's Own — The Conditions of Creativity",
+          "summary": "Research in preparation on space, education and economic resources, beginning with Virginia Woolf’s work.",
+          "path": "en/exhibitions/a-room-of-ones-own/index.html"
+        }
+      },
+      "displayOrder": 2,
+      "featured": false,
+      "relatedIds": [],
+      "researchPath": "docs/research/a-room-of-ones-own/",
+      "updatedAt": "2026-11-16"
+    },
+    {
+      "id": "the-unseen-hours",
+      "status": "draft",
+      "primaryCategory": "her-life",
+      "tags": [],
+      "locales": {
+        "zh-Hant": {
+          "title": "THE UNSEEN HOURS — 她的一日",
+          "summary": "以時間運用資料探索日常生活；資料集尚待研究與審核。",
+          "path": "exhibitions/the-unseen-hours/index.html"
+        },
+        "en": {
+          "title": "THE UNSEEN HOURS — A Day in Her Life",
+          "summary": "An exhibition in preparation on everyday time use; dataset selection awaits research and review.",
+          "path": "en/exhibitions/the-unseen-hours/index.html"
+        }
+      },
+      "displayOrder": 3,
+      "featured": false,
+      "relatedIds": [],
+      "researchPath": "docs/research/the-unseen-hours/",
+      "updatedAt": "2026-11-16"
+    }
+  ]
+}

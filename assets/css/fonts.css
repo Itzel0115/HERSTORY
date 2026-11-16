@@ -1,0 +1,7 @@
+/* OFL 1.1. Source Han Serif TC derivative renamed Herstory Reading; details in FONT_NOTES.md. */
+@font-face{font-family:'Herstory Reading';src:url('../fonts/herstory-reading.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fonts/cormorant-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Cormorant Garamond';src:url('../fonts/cormorant-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+
+/* Local metrics fallback: prevents the wider Georgia masthead from clipping. */
+@font-face{font-family:'Cormorant Fallback';src:local('Georgia'),local('Times New Roman');size-adjust:88%;font-weight:400;font-style:normal}

@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HERSTORY Exhibition Registry v1",
+  "description": "Proposed Phase 3.0 implementation. build-index.mjs adds filesystem and cross-record rules; no external validator dependency.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "exhibitions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "exhibitions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/exhibition"
+      }
+    }
+  },
+  "$defs": {
+    "locale": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "summary",
+        "path"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^(en/)?exhibitions/[a-z0-9]+(?:-[a-z0-9]+)*/index\\.html$"
+        },
+        "coverAlt": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "exhibition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "status",
+        "primaryCategory",
+        "tags",
+        "locales",
+        "displayOrder",
+        "featured",
+        "relatedIds",
+        "researchPath",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "review",
+            "published"
+          ]
+        },
+        "primaryCategory": {
+          "enum": [
+            "her-words",
+            "her-art",
+            "her-life",
+            "her-world"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "her-words",
+              "her-art",
+              "her-life",
+              "her-world"
+            ]
+          }
+        },
+        "locales": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "zh-Hant",
+            "en"
+          ],
+          "properties": {
+            "zh-Hant": {
+              "$ref": "#/$defs/locale"
+            },
+            "en": {
+              "$ref": "#/$defs/locale"
+            }
+          }
+        },
+        "displayOrder": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "featured": {
+          "type": "boolean"
+        },
+        "relatedIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        "researchPath": {
+          "type": "string",
+          "pattern": "^docs/research/[a-z0-9]+(?:-[a-z0-9]+)*/$"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "publishedAt": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "cover": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "assetId"
+          ],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^assets/images/[a-z0-9-]+/[a-z0-9.-]+\\.(jpg|jpeg|png|webp|svg)$"
+            },
+            "assetId": {
+              "type": "string",
+              "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "published"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "publishedAt"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "publishedAt"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "cover"
+            ]
+          },
+          "then": {
+            "properties": {
+              "locales": {
+                "properties": {
+                  "zh-Hant": {
+                    "required": [
+                      "coverAlt"
+                    ]
+                  },
+                  "en": {
+                    "required": [
+                      "coverAlt"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "locales": {
+                "properties": {
+                  "zh-Hant": {
+                    "not": {
+                      "required": [
+                        "coverAlt"
+                      ]
+                    }
+                  },
+                  "en": {
+                    "not": {
+                      "required": [
+                        "coverAlt"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

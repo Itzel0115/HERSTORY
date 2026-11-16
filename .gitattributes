@@ -1,0 +1,8 @@
+# Generated index regions must have identical bytes on Windows and Linux.
+* text=auto eol=lf
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.mp4 binary
